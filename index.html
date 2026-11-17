@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>เว็บของฉัน</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='34' fill='none' stroke='%23ffd166' stroke-width='14'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=IBM+Plex+Sans+Thai:wght@400;600&display=swap">
+
+<!-- ==========================================================================
+     แก้เฉพาะในกล่อง ME ข้างล่างนี้ก็พอ ส่วนอื่นของไฟล์ไม่ต้องแตะ
+     ข้อความทุกช่องอยู่ในเครื่องหมาย " " และท้ายบรรทัดมีเครื่องหมาย , เสมอ
+     ========================================================================== -->
+<script>
+const ME = {
+
+  // ชื่อผู้ใช้ GitHub ของเรา เว้นว่างไว้ได้ ถ้าเว็บอยู่บน github.io จะอ่านจากที่อยู่เว็บเอง
+  github: "",
+
+  // ชื่อที่จะแสดงตัวใหญ่ ใช้ชื่อเล่นได้ เว้นว่างไว้จะใช้ชื่อผู้ใช้ GitHub แทน
+  name: "",
+
+  // เราเป็นใคร สั้น ๆ
+  role: "นักศึกษาวิศวกรรมคอมพิวเตอร์ ชั้นปีที่ 1",
+
+  // หนึ่งประโยคใต้ชื่อ
+  tagline: "เพิ่งเริ่มทำเว็บนี้ในวิชาปฏิบัติการวิศวกรรมคอมพิวเตอร์ 1",
+
+  // แนะนำตัว 2-3 บรรทัด ว่ามาจากไหน สนใจอะไร
+  about: "หน้านี้ยังเป็นข้อความตั้งต้นของวิชา เดี๋ยวจะแก้กล่อง ME ให้เป็นเรื่องของตัวเอง",
+
+  // กำลังเรียนรู้อะไรอยู่ เรียงจากเก่าไปใหม่ บรรทัดล่างสุดจะขึ้นเป็นเรื่องล่าสุด
+  learning: [
+    "สั่งงานคอมพิวเตอร์ด้วยคำสั่งใน Git Bash",
+    "เขียนโปรแกรม Python สร้าง QR code",
+    "บันทึกงานทีละขั้นด้วย Git",
+  ],
+
+  // ผลงาน ยังไม่มีก็ปล่อยว่างไว้ได้ เมื่อมีแล้วค่อยเพิ่มทีละชิ้น เช่น
+  // { title: "โปรแกรมสร้าง QR code", desc: "อ่านรายชื่อเว็บจากไฟล์ แล้วสร้างรูป QR code", url: "" },
+  works: [],
+
+  // ช่องทางติดต่อ ใส่ลิงก์สาธารณะเท่านั้น ห้ามใส่เบอร์โทรหรืออีเมลส่วนตัว
+  links: [
+    { label: "GitHub", url: "" },   // เว้นว่างไว้ จะลิงก์ไปหน้า profile ของเราเอง
+  ],
+
+  // ธีมสี เลือกหนึ่งชื่อ: "blueprint" "chalk" "sunset" "grape" "paper"
+  theme: "blueprint",
+
+};
+</script>
+
+<style>
+/* ---------- ธีมสี เลือกได้ที่ช่อง theme ในกล่อง ME ไม่ต้องแก้ตรงนี้ ---------- */
+:root,
+[data-theme="blueprint"] {
+  --bg:#0c2a4d; --grid:rgba(160,200,255,.10); --line:#2f5a8a;
+  --text:#eef4ff; --muted:#a9bfdc; --accent:#ffd166; --ink:#0c2a4d;
+}
+[data-theme="chalk"] {
+  --bg:#1c3a2f; --grid:rgba(255,255,255,.07); --line:#3f6a58;
+  --text:#f4f1e4; --muted:#bccbbf; --accent:#ffe08a; --ink:#1c3a2f;
+}
+[data-theme="sunset"] {
+  --bg:#2b1624; --grid:rgba(255,190,160,.08); --line:#5c3346;
+  --text:#fff1ea; --muted:#d9b6b0; --accent:#ff9b6a; --ink:#2b1624;
+}
+[data-theme="grape"] {
+  --bg:#1d1838; --grid:rgba(200,180,255,.09); --line:#433a73;
+  --text:#f2eeff; --muted:#bdb3e0; --accent:#c9b0ff; --ink:#1d1838;
+}
+/* ธีมเดียวที่พื้นสว่าง */
+[data-theme="paper"] {
+  --bg:#f4f7fb; --grid:rgba(20,50,100,.08); --line:#c9d4e3;
+  --text:#14223b; --muted:#4b5c78; --accent:#1f5fbf; --ink:#ffffff;
+}
+
+:root{
+  --display:"Chakra Petch","IBM Plex Sans Thai",system-ui,sans-serif;
+  --body:"IBM Plex Sans Thai","Segoe UI",system-ui,sans-serif;
+  --mx:50%; --my:-200px;     /* ตำแหน่งเมาส์ ใช้ทำแสงบนตาราง */
+}
+
+*{ box-sizing:border-box }
+html{ background:var(--bg) }
+body{
+  margin:0; min-height:100vh; color:var(--text);
+  font:400 17px/1.8 var(--body);
+  background-color:var(--bg);
+  /* ตารางแบบกระดาษเขียนแบบ ช่องเล็กทุก 24px ช่องใหญ่ทุก 120px */
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:120px 120px, 120px 120px, 24px 24px, 24px 24px;
+}
+/* แสงตามเมาส์ ทำให้ตารางตรงที่ชี้สว่างขึ้น */
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:radial-gradient(260px circle at var(--mx) var(--my),
+             color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%);
+}
+
+.wrap{ display:flow-root; position:relative; z-index:1; max-width:720px; margin:0 auto; padding:0 20px 72px }
+a{ color:var(--accent) }
+a:focus-visible, button:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px }
+
+/* ---------- ส่วนหัว ---------- */
+.hero{ display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:center; padding:72px 0 0 }
+.avatar-box{ position:relative; width:112px; height:112px }
+.avatar-box img, .avatar-box .fallback{
+  position:absolute; inset:8px; width:96px; height:96px; border-radius:50%;
+  object-fit:cover; background:var(--line);
+}
+.avatar-box .fallback{
+  display:flex; align-items:center; justify-content:center;
+  font:700 40px/1 var(--display); color:var(--accent);
+}
+.avatar-box svg{ position:absolute; inset:0; overflow:visible }
+.ring{ fill:none; stroke:var(--accent); stroke-width:2.5; stroke-linecap:round;
+       stroke-dasharray:330; stroke-dashoffset:330; transform:rotate(-90deg); transform-origin:center }
+.ready .ring{ transition:stroke-dashoffset 1.1s cubic-bezier(.6,0,.2,1); stroke-dashoffset:0 }
+
+.role{ margin:0 0 4px; color:var(--accent); font-weight:600; font-size:15px }
+h1{
+  margin:0; font:700 clamp(36px,8vw,60px)/1.05 var(--display);
+  letter-spacing:-.01em; overflow-wrap:anywhere;
+}
+.tagline{ margin:10px 0 0; font-size:clamp(17px,2.4vw,20px); min-height:1.8em }
+.caret{
+  display:inline-block; width:.55em; height:1.05em; margin-left:2px; vertical-align:-.15em;
+  background:var(--accent); animation:blink 1s steps(1) infinite;
+}
+@keyframes blink{ 50%{ opacity:0 } }
+
+.about{ margin:28px 0 0; max-width:60ch; color:var(--muted) }
+.links{ display:flex; flex-wrap:wrap; gap:10px; margin:22px 0 0; padding:0; list-style:none }
+.links a{
+  display:inline-flex; align-items:center; min-height:44px; padding:0 20px;
+  border:1.5px solid var(--accent); border-radius:6px;
+  color:var(--accent); text-decoration:none; font-weight:600;
+}
+.links a:hover{ background:var(--accent); color:var(--ink) }
+
+/* ---------- หัวข้อแต่ละส่วน ---------- */
+section{ margin-top:64px }
+h2{ margin:0 0 22px; font:600 22px/1.3 var(--display) }
+
+/* ---------- กำลังเรียนรู้ วาดเป็นเส้นแบบ git log --graph ---------- */
+.graph{ position:relative; list-style:none; margin:0; padding:0 0 0 40px }
+.graph::before{             /* เส้นตั้งที่เชื่อมทุกจุด */
+  content:""; position:absolute; left:11px; top:14px; bottom:14px; width:2px;
+  background:var(--accent); transform-origin:top; transform:scaleY(var(--draw,1));
+}
+.graph li{ position:relative; padding:4px 0 22px }
+.graph li:last-child{ padding-bottom:0 }
+.graph li::before{          /* จุดของแต่ละเรื่อง */
+  content:""; position:absolute; left:-36px; top:12px; width:14px; height:14px;
+  border-radius:50%; background:var(--bg); border:2.5px solid var(--accent);
+}
+.graph li.latest::before{ background:var(--accent) }
+.graph li.latest::after{    /* วงกระเพื่อมรอบเรื่องล่าสุด */
+  content:""; position:absolute; left:-36px; top:12px; width:14px; height:14px;
+  border-radius:50%; border:2px solid var(--accent); animation:ripple 2.2s ease-out infinite;
+}
+@keyframes ripple{ from{ transform:scale(1); opacity:.9 } to{ transform:scale(2.8); opacity:0 } }
+.graph .now{ margin-left:10px; font-size:13px; font-weight:600; color:var(--accent); white-space:nowrap }
+
+/* ภาพเคลื่อนไหวตอนเลื่อนมาถึง: เส้นยาวลงมา แล้วแต่ละจุดเด้งขึ้นตามลำดับ */
+.graph.pending{ --draw:0 }
+.graph.pending li{ opacity:0; transform:translateX(-8px) }
+.graph.play::before{ transition:transform .9s cubic-bezier(.6,0,.2,1) }
+.graph.play li{ transition:opacity .35s ease, transform .35s ease; transition-delay:calc(var(--i) * 180ms + 250ms) }
+
+/* ---------- ผลงาน ---------- */
+.works{ display:grid; gap:0; border-top:1px solid var(--line) }
+.work{ padding:16px 0; border-bottom:1px solid var(--line) }
+.work h3{ margin:0; font:600 18px/1.4 var(--display) }
+.work p{ margin:2px 0 0; color:var(--muted) }
+.empty{ margin:0; padding:20px 0; color:var(--muted); border-top:1px solid var(--line); border-bottom:1px solid var(--line) }
+
+/* ---------- ข้อมูลการเชื่อมต่อ ---------- */
+.net{ margin:0 }
+.net .row{ display:grid; grid-template-columns:150px 1fr; gap:14px; padding:12px 0; border-top:1px solid var(--line) }
+.net dt{ font-weight:600 }
+.net dd{ margin:0 }
+.net .val{ display:block; color:var(--accent); font-weight:600; word-break:break-all }
+.net .note{ display:block; color:var(--muted); font-size:14.5px }
+.hint{ margin:12px 0 0; color:var(--muted); font-size:14.5px }
+
+/* ---------- กล่องแจ้งเมื่อกล่อง ME เขียนผิด ---------- */
+.broken{ margin:72px 0 0; padding:20px 22px; border:2px dashed var(--accent); border-radius:8px }
+.broken h1{ font-size:28px }
+.broken p{ margin:10px 0 0 }
+
+footer{ margin-top:72px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font-size:15px }
+footer p{ margin:0 }
+
+@media (max-width:540px){
+  .hero{ grid-template-columns:1fr; gap:14px; padding-top:44px }
+  .net .row{ grid-template-columns:1fr; gap:2px }
+}
+@media (prefers-reduced-motion:reduce){
+  *, *::before, *::after{ animation:none !important; transition:none !important }
+}
+</style>
+</head>
+<body>
+<div class="wrap" id="page">
+
+  <header class="hero">
+    <div class="avatar-box" id="avatarbox">
+      <img id="avatar" alt="" width="96" height="96">
+      <svg viewBox="0 0 112 112" aria-hidden="true"><circle class="ring" cx="56" cy="56" r="52"/></svg>
+    </div>
+    <div>
+      <p class="role" id="role"></p>
+      <h1 id="name"></h1>
+      <p class="tagline"><span id="tagline"></span><span class="caret" aria-hidden="true"></span></p>
+    </div>
+  </header>
+  <p class="about" id="about"></p>
+  <ul class="links" id="links"></ul>
+
+  <section>
+    <h2>กำลังเรียนรู้</h2>
+    <ul class="graph" id="learning"></ul>
+  </section>
+
+  <section>
+    <h2>ผลงาน</h2>
+    <div class="works" id="works"></div>
+  </section>
+
+  <!-- ค่าทุกตัวในส่วนนี้ browser วัดจากการโหลดหน้านี้จริง ไม่ได้เขียนค้างไว้ -->
+  <section>
+    <h2>ข้อมูลการเชื่อมต่อของหน้านี้</h2>
+    <dl class="net" id="netpanel"></dl>
+    <p class="hint">กด F12 เลือกแท็บ Network แล้วกด Ctrl+F5 เพื่อเทียบค่า</p>
+  </section>
+
+  <footer>
+    <p>สร้างจากเว็บตั้งต้นของวิชาปฏิบัติการวิศวกรรมคอมพิวเตอร์ 1 และโฮสต์บน GitHub Pages</p>
+    <p><a id="repolink" href="https://github.com">ดูซอร์สโค้ดของหน้านี้</a></p>
+  </footer>
+</div>
+
+<script>
+(() => {
+const $ = (id) => document.getElementById(id);
+const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* แบ่งข้อความเป็นตัวอักษรที่เห็นบนจอ สระและวรรณยุกต์ไทยจะติดไปกับพยัญชนะ ไม่แยกหลุด */
+function letters(text) {
+  if (window.Intl && Intl.Segmenter) {
+    return [...new Intl.Segmenter('th', { granularity: 'grapheme' }).segment(text)].map(s => s.segment);
+  }
+  return Array.from(text);
+}
+
+/* ---------- 0) ถ้ากล่อง ME เขียนผิด หน้าเว็บจะขึ้นกล่องนี้แทน ---------- */
+if (typeof ME === 'undefined') {
+  $('page').innerHTML =
+    '<div class="broken"><h1>กล่อง ME มีที่เขียนผิด</h1>' +
+    '<p>หน้าเว็บจึงอ่านข้อมูลไม่ได้และแสดงอะไรไม่ได้</p>' +
+    '<p>กด F12 แล้วเปิดแท็บ Console จะเห็นว่าผิดที่บรรทัดไหน มักเกิดจากเครื่องหมาย [ ] " หรือ , หายไป</p></div>';
+  return;
+}
+
+/* ---------- 1) นำข้อมูลจากกล่อง ME มาแสดง ---------- */
+/* ช่องที่เว้นว่างไว้ เติมจากที่อยู่เว็บ เช่น abc123.github.io ได้ชื่อผู้ใช้ abc123 */
+const host = location.hostname.match(/^([a-z0-9-]+)\.github\.io$/i);
+const user = (ME.github || (host ? host[1] : '')).trim();
+const name = (ME.name || user || 'ยังไม่ได้ใส่ชื่อ').trim();
+document.title = name;
+document.documentElement.dataset.theme = ME.theme || 'blueprint';
+$('role').textContent  = ME.role;
+$('about').textContent = ME.about;
+
+/* ชื่อถอดรหัสทีละตัว: ตัวที่ยังไม่ถึงจะเป็นตัวอักษรสุ่ม แล้วค่อยกลายเป็นชื่อจริง */
+function decode(el, text, done) {
+  const real = letters(text);
+  if (calm) { el.textContent = text; done(); return; }
+  const glyphs = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#$%&';
+  const total = 700, start = performance.now();
+  el.setAttribute('aria-label', text);
+  (function frame(now) {
+    const shown = Math.floor(Math.min(1, (now - start) / total) * real.length);
+    el.textContent = real.map((c, i) =>
+      i < shown || c.trim() === '' ? c : glyphs[Math.floor(Math.random() * glyphs.length)]
+    ).join('');
+    if (shown < real.length) requestAnimationFrame(frame); else { el.textContent = text; done(); }
+  })(start);
+}
+
+/* tagline พิมพ์ออกมาทีละตัว */
+function type(el, text) {
+  if (calm) { el.textContent = text; return; }
+  const real = letters(text);
+  let i = 0;
+  (function next() {
+    el.textContent = real.slice(0, ++i).join('');
+    if (i < real.length) setTimeout(next, 34);
+  })();
+}
+
+requestAnimationFrame(() => $('avatarbox').classList.add('ready'));
+decode($('name'), name, () => type($('tagline'), ME.tagline));
+
+/* รูปโปรไฟล์ดึงจาก GitHub ถ้าโหลดไม่ได้ จะแสดงตัวอักษรแรกของชื่อแทน */
+const avatar = $('avatar');
+avatar.alt = 'รูปโปรไฟล์ของ ' + name;
+avatar.addEventListener('error', () => {
+  const box = document.createElement('div');
+  box.className = 'fallback';
+  box.setAttribute('aria-hidden', 'true');
+  box.textContent = (ME.name || user) ? letters(name)[0] : '?';
+  avatar.replaceWith(box);
+});
+avatar.src = user ? 'https://github.com/' + user + '.png?size=192' : 'data:,';
+
+for (const link of ME.links || []) {
+  const a = document.createElement('a');
+  a.href = link.url || (user ? 'https://github.com/' + user : 'https://github.com');
+  a.textContent = link.label;
+  a.rel = 'noopener noreferrer';
+  const li = document.createElement('li');
+  li.appendChild(a);
+  $('links').appendChild(li);
+}
+
+/* กำลังเรียนรู้: เรื่องสุดท้ายในรายการคือเรื่องล่าสุด */
+const learning = ME.learning || [];
+learning.forEach((item, i) => {
+  const li = document.createElement('li');
+  li.style.setProperty('--i', i);
+  li.textContent = item;        // ใช้ textContent เสมอ ปลอดภัยกว่า innerHTML
+  if (i === learning.length - 1) {
+    li.className = 'latest';
+    const now = document.createElement('span');
+    now.className = 'now';
+    now.textContent = 'ล่าสุด';
+    li.appendChild(now);
+  }
+  $('learning').appendChild(li);
+});
+
+/* เส้นเริ่มวาดเมื่อเลื่อนมาเห็นส่วนนี้ */
+const graph = $('learning');
+if (!calm && 'IntersectionObserver' in window) {
+  graph.classList.add('pending');
+  new IntersectionObserver((entries, obs) => {
+    if (!entries[0].isIntersecting) return;
+    graph.classList.add('play');
+    requestAnimationFrame(() => graph.classList.remove('pending'));
+    obs.disconnect();
+  }, { threshold: 0.35 }).observe(graph);
+}
+
+/* แสงบนตารางตามเมาส์ ใช้เฉพาะเครื่องที่มีเมาส์ */
+if (!calm && matchMedia('(pointer: fine)').matches) {
+  addEventListener('pointermove', (e) => {
+    document.body.style.setProperty('--mx', e.clientX + 'px');
+    document.body.style.setProperty('--my', e.clientY + 'px');
+  }, { passive: true });
+}
+
+if (!ME.works || ME.works.length === 0) {
+  const p = document.createElement('p');
+  p.className = 'empty';
+  p.textContent = 'ยังไม่มีผลงาน ทำเสร็จชิ้นไหนก็เพิ่มลงในช่อง works ของกล่อง ME';
+  $('works').replaceWith(p);
+} else {
+  for (const w of ME.works) {
+    const div = document.createElement('div');
+    div.className = 'work';
+    const h3 = document.createElement('h3');
+    h3.textContent = w.title;
+    const p = document.createElement('p');
+    p.textContent = w.desc;
+    div.append(h3, p);
+    if (w.url) {
+      const a = document.createElement('a');
+      a.href = w.url;
+      a.textContent = 'เปิดดูผลงาน';
+      a.rel = 'noopener noreferrer';
+      div.appendChild(a);
+    }
+    $('works').appendChild(div);
+  }
+}
+
+$('repolink').href = user ? 'https://github.com/' + user + '/celab1' : 'https://github.com';
+
+/* ---------- 2) ข้อมูลการเชื่อมต่อ อ่านค่าจริงจาก Performance API ---------- */
+function ms(v) {
+  /* 0 ms แปลว่า browser ข้ามขั้นนั้น เพราะมีข้อมูลใน cache อยู่แล้ว */
+  if (typeof v !== 'number' || v < 0 || Number.isNaN(v)) return 'ไม่มีค่า';
+  return Math.round(v) + ' ms';
+}
+
+addEventListener('load', () => setTimeout(() => {
+  const nav = performance.getEntriesByType('navigation')[0];
+  const rows = [
+    ['Domain name', location.hostname || '(เปิดจากไฟล์ในเครื่อง)',
+     'ชื่อโดเมนต้องแปลงเป็น IP address ผ่าน DNS ก่อน จึงจะติดต่อ server ได้'],
+    ['Protocol', location.protocol,
+     'https คือ HTTP ที่เข้ารหัส และยืนยันตัวตน server ด้วย certificate'],
+  ];
+  if (nav && location.protocol !== 'file:') rows.push(
+    ['HTTP version', nav.nextHopProtocol || 'ไม่มีค่า',
+     'h2 คือ HTTP/2 และ h3 คือ HTTP/3 ส่งหลายไฟล์พร้อมกันได้ในการเชื่อมต่อเดียว'],
+    ['DNS lookup', ms(nav.domainLookupEnd - nav.domainLookupStart),
+     'เวลาที่ใช้แปลงชื่อโดเมนเป็น IP address'],
+    ['Connection + TLS', ms(nav.connectEnd - nav.connectStart),
+     'เวลาสร้างการเชื่อมต่อ รวม TLS handshake ก่อนเริ่มรับส่งข้อมูลจริง'],
+    ['TTFB', ms(nav.responseStart - nav.requestStart),
+     'Time To First Byte เวลาตั้งแต่ส่ง request จนได้ข้อมูลไบต์แรกกลับมา'],
+  );
+
+  for (const [label, value, note] of rows) {
+    const row = document.createElement('div');
+    row.className = 'row';
+    const dt = document.createElement('dt');
+    dt.textContent = label;
+    const dd = document.createElement('dd');
+    const v = document.createElement('span');
+    v.className = 'val';
+    v.textContent = value;
+    const n = document.createElement('span');
+    n.className = 'note';
+    n.textContent = note;
+    dd.append(v, n);
+    row.append(dt, dd);
+    $('netpanel').appendChild(row);
+  }
+}, 0));
+})();
+</script>
+</body>
+</html>
